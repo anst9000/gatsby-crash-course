@@ -27,6 +27,12 @@ export const pageQuery = graphql`
   query BlogIndexQuery
   {
     allMarkdownRemark
+    (
+      sort: {
+        fields: [frontmatter___date]
+        order: DESC
+      }
+    )
     {
       edges
       {
