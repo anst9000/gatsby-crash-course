@@ -1,17 +1,34 @@
-import os
+import os, sys
 from datetime import date
 
 
 class Blog:
-  def __init__(self, path, date, title, author, content):
+  def __init__(self, path, date, title, author, content, language, code):
     self.path = path
     self.date = date
     self.title = title
     self.author = author
     self.content = content
+    self.language = language
+    self.code = code
 
   def __str__(self):
-    return f'''---
+    if self.language is not None:
+      return f'''---
+path: {self.path}
+date: {self.date}
+title: {self.title}
+author: {self.author}
+---
+
+{self.content}
+
+```{self.language}
+{self.code}
+```
+'''
+    else:
+      return f'''---
 path: {self.path}
 date: {self.date}
 title: {self.title}
@@ -21,8 +38,9 @@ author: {self.author}
 {self.content}
 '''
 
+
 def dirCount():
-  count1 = 0
+  count1 = 1
   for root, dirs, files in os.walk(postPath):
     count1 += len(dirs)
 
@@ -61,21 +79,29 @@ def printToFile(newBlog):
     f.write('---\n\n')
     f.write(newBlog.content + '\n')
 
+    if newBlog.language is not None:
+      f.write('\n```' + newBlog.language + '\n')
+      f.write(newBlog.code)
+      f.write('\n```')
+
 
 def getContent():
   print("""
     Enter or paste your content.
     Ctrl-D or Ctrl-Z ( windows ) to save it.
   """)
-  content = []
 
+  buffer = []
   while True:
-    try:
-      line = input()
-    except EOFError:
+    line = sys.stdin.readline().rstrip('\n')
+    if line == 'quit':
+      run = False
       break
-    content.append(line)
-    return content
+    else:
+      buffer.append(line)
+
+  print(buffer)
+  return buffer
 
 
 def getUserInput():
@@ -84,8 +110,18 @@ def getUserInput():
   title = input("Enter a blog title: ")
   author = input("Who is the author: ")
   listContent = getContent()
-  content = ' '.join([str(elem) for elem in listContent])
-  return Blog(path, date, title, author, content)
+  content = '\n'.join([str(elem) for elem in listContent])
+  print('_____' + content)
+  codeQuiz = input("Do you want to enter a code snippet? (y/n) ")
+
+  if codeQuiz[:1].lower() == 'y':
+    language = input("What coding language? ").lower()
+    listCode = getContent()
+    code = '\n'.join([str(elem) for elem in listCode])
+  else:
+    language = None
+    code = None
+  return Blog(path, date, title, author, content, language, code)
 
 
 currentPath = os.getcwd()
@@ -97,4 +133,3 @@ newBlog = getUserInput()
 
 printToFile(newBlog)
 print(newBlog)
-
