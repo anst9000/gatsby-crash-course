@@ -15,7 +15,7 @@ const Menu = () => (
       }}>
         <li><Link className="menu-link" to="/">Home</Link></li>
         <li><Link className="menu-link" to="/about">About</Link></li>
-        <li><Link className="menu-link" to="/services">Services</Link></li>
+        {/* <li><Link className="menu-link" to="/services">Services</Link></li> */}
         <li><Link className="menu-link" to="/blog">Blog</Link></li>
       </ul>
     </div>

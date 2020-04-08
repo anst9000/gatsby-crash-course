@@ -1,7 +1,7 @@
 from tkinter import *
 import os, sys
 from datetime import date
-
+import textwrap
 
 fields = ('Title', 'Author', 'Content', 'Language', 'Code')
 
@@ -43,6 +43,19 @@ author: {self.author}
 '''
 
 
+def fixText(text):
+  returnText = ''
+  lines = text.split('\n')
+  print(lines)
+  for line in lines:
+    print(line)
+    if len(line) > 60:
+      returnText = returnText + textwrap.fill(line, 60) + '\n'
+    else:
+      returnText = returnText + line + '\n'
+
+  return returnText
+
 
 def printFields(entries):
   path = '/post-' + numberOfDirectories
@@ -56,6 +69,8 @@ def printFields(entries):
     attribute = ''
     if field == 'Content' or field == 'Code':
       attribute = entries[field].get("1.0","end-1c")
+      attribute = fixText(attribute)
+
     else:
       attribute = entries[field].get()
 

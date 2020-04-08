@@ -36,6 +36,10 @@ body {
   padding: 2px 16px;
 }
 
+.container h4 {
+  margin: 1rem 0;
+}
+
 .post-header {
   margin: 25px 0;
 }
@@ -87,14 +91,29 @@ body {
   color: #dddddd;
 }
 
+.code-snippet {
+  word-wrap: break-word;
+}
+
 pre {
   background-color: lightgrey;
   padding: 1rem;
   border: 2px solid black;
+  max-width: 800px;
+  word-wrap: break-word;
 }
 
 img {
   margin-top: 1rem;
   max-width: 125px;
   max-height: 125px;
+}
+
+@media screen and (max-width: 992px) {
+  .button {
+    border-radius: 45%;
+    padding: 2px 4px;
+    font-size: 10px;
+  }
+
 }

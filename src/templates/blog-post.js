@@ -15,7 +15,7 @@ export default function Template({data}) {
         <Link className="button back-link" to="/blog">Go Back</Link>
       </div>
       <h4>Posted by {post.frontmatter.author} on {post.frontmatter.date}</h4>
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      <div className="code-snippet" dangerouslySetInnerHTML={{ __html: post.html }} />
     </div>
     </Layout>
   )
