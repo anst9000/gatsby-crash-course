@@ -1,5 +1,5 @@
 ---
-path: "/post-002"
+path: "/post-001"
 date: "2020-04-06"
 title: "Python script to create Gatsby post"
 summary: "This is the Python script that I code for creating"

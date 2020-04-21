@@ -17,7 +17,7 @@ const BlogPage = ({data}) => (
           <br/>
           <div class="card-bottom">
             <Link className="button" to={post.node.frontmatter.path}>Read More</Link>
-            <small class="author">Posted by {post.node.frontmatter.author} on {post.node.frontmatter.date}</small>
+            <small className="author">Posted by {post.node.frontmatter.author} on {post.node.frontmatter.date}</small>
           </div>
         </div>
       </div>

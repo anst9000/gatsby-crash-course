@@ -29,6 +29,10 @@ body {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
 }
 
+.author {
+  font-size: 1.2rem;
+}
+
 /* Add some padding inside the card container */
 .container {
   max-width: 100%;
@@ -120,12 +124,25 @@ img {
     max-width: 600px;
   }
 
+  .author {
+    font-size: 1.0rem;
+  }
 }
 
 @media screen and (max-width: 600px) {
-  pre {
-    max-width: 450px;
+  .button {
+    border-radius: 25%;
+    padding: 2px 2px;
     font-size: 8px;
+  }
+
+  pre {
+    max-width: 400px;
+    font-size: 8px;
+  }
+
+  .author {
+    display: none;
   }
 
 }
