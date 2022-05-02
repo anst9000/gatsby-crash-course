@@ -1,4 +1,6 @@
-from tkinter import *
+# from tkinter import *
+import tkinter as tk
+import tkinter.ttk as ttk
 import os, sys
 from datetime import date
 import textwrap
@@ -83,24 +85,40 @@ def printFields(entries):
   root.destroy()
 
 
-def makeform(root, fields):
-  heading = Label(text="Enter new Blog post", width="300", height="2", font=("Calibri", 20)).pack()
+def focusNextWidget(event):
+  event.widget.tk_focusNext().focus()
+  return("break")
+
+
+def focusPrevWidget(event):
+  event.widget.tk_focusPrev().focus()
+  return("break")
+
+
+def createForm(root, fields):
+  heading = tk.Label(text="Enter new Blog post", width="300", height="2", font=("Calibri", 20)).pack()
 
   entries = {}
   for field in fields:
-    row = Frame(root)
-    lab = Label(row, width=10, text=field + ": ", anchor='w')
+    row = tk.Frame(root)
+    lab = tk.Label(row, width=10, text=field + ": ", anchor='w')
     lab.config(font=("Consolas", 14))
     if field == 'Content' or field == 'Code':
       print('This is ' + field)
-      ent = Text(row, height=5, width=10, wrap=WORD)
+      ent = tk.Text(row, height=5, width=10, wrap=tk.WORD, padx=5, pady=1)
     else:
-      ent = Entry(row)
+      ent = ttk.Entry(row, style='pad.TEntry')
+
+    if field == 'Title':
+      ent.focus()
 
     ent.config(font=("Source Code Pro", 12))
-    row.pack(side = TOP, fill = X, padx = 25 , pady = 5)
-    lab.pack(side = LEFT)
-    ent.pack(side = RIGHT, expand = YES, fill = X)
+    ent.bind("<Tab>", focusNextWidget)
+    ent.bind('<Shift-Tab>', focusPrevWidget)
+    row.pack(side=tk.TOP, fill=tk.X, padx=25, pady=5)
+    lab.pack(side=tk.LEFT)
+    ent.pack(side=tk.RIGHT, expand=tk.YES, fill=tk.X)
+
     entries[field] = ent
   return entries
 
@@ -152,17 +170,17 @@ def printToFile(newBlog):
       f.write('\n```')
 
 
-
 if __name__ == '__main__':
-  root = Tk()
+  root= tk.Tk()
   root.geometry("800x600")
-  ents = makeform(root, fields)
-  root.bind('<Return>', (lambda event, e = ents: fetch(e)))
+  ttk.Style().configure('pad.TEntry', padding='5 1 1 1')
+  ents = createForm(root, fields)
 
-  b1 = Button(root, text = 'Submit',
+  b1 = tk.Button(root, text = 'Submit',
     command=(lambda e = ents: printFields(e)), bg='#00ff00', fg='#333333', font=('helvetica', 9, 'bold'))
+  b1.bind("<Return>", (lambda event, e = ents: printFields(e)))
   b1.config(font=("Consolas", 14))
-  b1.pack(side = RIGHT, padx = 50, pady = 5)
+  b1.pack(side = tk.RIGHT, padx = 50, pady = 5)
 
   currentPath = os.getcwd()
   postPath = "./src/pages/"
