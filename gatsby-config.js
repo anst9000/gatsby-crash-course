@@ -2,7 +2,16 @@ module.exports = {
   siteMetadata: {
     title: `Andy Dev Thoughts`,
     description: `This is a personal blog made by Anders Strömberg.`,
-    author: `@Anders Strömberg`,
+    author: {
+      name: `Anders Strömberg`,
+      email: `coltlaboy@yahoo.se`,
+      copyright: `Copyright© 2022`,
+      summary: `Web developer`,
+    },
+    social: {
+      twitter: `astromberg8@twitter.com`,
+    },
+    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -16,11 +25,11 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-catch-links`,
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-source-filesystem",
       options: {
         path: `${__dirname}/src/pages`,
-        name: 'pages'
-      }
+        name: "pages",
+      },
     },
     `gatsby-transformer-remark`,
     `gatsby-plugin-sharp`,

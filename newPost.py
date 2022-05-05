@@ -122,12 +122,13 @@ def createForm(root, fields):
     entries[field] = ent
   return entries
 
-def dirCount():
-  count1 = 1
-  for root, dirs, files in os.walk(postPath):
-    count1 += len(dirs)
 
-  return str(count1).zfill(3)
+def dirCount():
+  directoryCount = 1
+  for root, dirs, files in os.walk(postPath):
+    directoryCount += len(dirs)
+
+  return str(directoryCount).zfill(3)
 
 
 def getDate():

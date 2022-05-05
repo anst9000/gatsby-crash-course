@@ -1,12 +1,17 @@
-import React from 'react'
+import React from "react"
 import PropTypes from "prop-types"
 
-const Footer = ({ siteAuthor }) => (
-  <div className="footer">
-    <div className="footer-name">{siteAuthor}</div>
-    <p className="footer-copyright">Copyright 2020</p>
-  </div>
-)
+const Footer = ({ siteAuthor }) => {
+  const { name, email, copyright } = siteAuthor
+
+  return (
+    <div className="footer">
+      <div className="footer-name">{name}</div>
+      <div className="footer-name">{email}</div>
+      <p className="footer-copyright">{copyright}</p>
+    </div>
+  )
+}
 
 Footer.propTypes = {
   siteAuthor: PropTypes.string,
@@ -15,6 +20,5 @@ Footer.propTypes = {
 Footer.defaultProps = {
   siteAuthor: ``,
 }
-
 
 export default Footer

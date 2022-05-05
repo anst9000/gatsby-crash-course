@@ -1,22 +1,30 @@
-import React from 'react'
-import Link from 'gatsby-link'
+import React from "react"
+import Link from "gatsby-link"
 
 import Layout from "../components/layout"
 
-
-export default function Template({data}) {
+export default function Template({ data }) {
   const post = data.markdownRemark
+  const { title, author, date } = post.frontmatter
+  const { html } = post.html
 
-  return(
-  <Layout>
-    <div class="container">
-      <div class="single-blog-header">
-        <h1 className="single-blog-header">{post.frontmatter.title}</h1>
-        <Link className="button back-link" to="/blog">Go Back</Link>
+  return (
+    <Layout>
+      <div class="container">
+        <div class="single-blog-header">
+          <h1 className="single-blog-header">{title}</h1>
+          <Link className="btn btn-secondary" to="/blog">
+            Go Back
+          </Link>
+        </div>
+        <h4>
+          {author} on {date}
+        </h4>
+        <div
+          className="code-snippet"
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
       </div>
-      <h4>Posted by {post.frontmatter.author} on {post.frontmatter.date}</h4>
-      <div className="code-snippet" dangerouslySetInnerHTML={{ __html: post.html }} />
-    </div>
     </Layout>
   )
 }

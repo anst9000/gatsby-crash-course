@@ -1,32 +1,36 @@
-html, body {
+html,
+body {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  background-color: #878E99;
+  background-color: #878e99;
   height: 100%;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 }
 
 .wrapper {
-  flex: 1 0 auto;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -50px;
 }
 
 .card {
   /* Add shadows to create the "card" effect */
-  max-width: 800px;
-  margin: 20px auto;
-  border-radius: 5%;
+  width: 600px;
+  margin: 2rem auto;
+  /* border-radius: 5%; */
   padding: 18px 20px;
   background-color: #cec1e7;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
   transition: 0.3s;
 }
 
 /* On mouse-over, add a deeper shadow */
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
 }
 
 .author {
@@ -54,17 +58,6 @@ body {
   justify-content: space-between;
 }
 
-
-.button {
-  background: #F0A6CA;
-  border: 1px solid #333333;
-  border-radius: 45%;
-  padding: 6px 12px;
-  font-size: 15px;
-  font-weight: 700;
-  color: #333;
-}
-
 .card-bottom {
   display: flex;
   align-items: flex-end;
@@ -72,6 +65,10 @@ body {
 }
 
 .footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   color: white;
   background: #333;
   margin-top: 1rem;
@@ -111,38 +108,4 @@ img {
   margin-top: 1rem;
   max-width: 125px;
   max-height: 125px;
-}
-
-@media screen and (max-width: 992px) {
-  .button {
-    border-radius: 45%;
-    padding: 2px 4px;
-    font-size: 10px;
-  }
-
-  pre {
-    max-width: 600px;
-  }
-
-  .author {
-    font-size: 1.0rem;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .button {
-    border-radius: 25%;
-    padding: 2px 2px;
-    font-size: 8px;
-  }
-
-  pre {
-    max-width: 400px;
-    font-size: 8px;
-  }
-
-  .author {
-    display: none;
-  }
-
 }
