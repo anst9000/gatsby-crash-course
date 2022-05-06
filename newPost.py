@@ -5,6 +5,7 @@ import os, sys
 from datetime import date
 import textwrap
 
+languages = ['python', 'json', 'ruby', 'javascript', 'java', 'cpp']
 fields = ('Title', 'Author', 'Content', 'Language', 'Code')
 
 
@@ -16,7 +17,8 @@ class Blog:
     self.author = author
     self.content = content
     self.language = language
-    self.code = code
+    self.code = code.strip()
+    print('--> code = ' + code)
 
   def __str__(self):
     if self.language is not None:
@@ -106,6 +108,9 @@ def createForm(root, fields):
     if field == 'Content' or field == 'Code':
       print('This is ' + field)
       ent = tk.Text(row, height=5, width=10, wrap=tk.WORD, padx=5, pady=1)
+    elif field == 'Language':
+      ent = ttk.Combobox(row, values=languages)
+      ent.set('Choose a programming language')
     else:
       ent = ttk.Entry(row, style='pad.TEntry')
 
