@@ -14,7 +14,7 @@ const Footer = ({ siteAuthor }) => {
 }
 
 Footer.propTypes = {
-  siteAuthor: PropTypes.string,
+  siteAuthor: PropTypes.object,
 }
 
 Footer.defaultProps = {

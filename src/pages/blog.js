@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -14,15 +15,15 @@ const BlogPage = ({ data }) => {
         const { title, summary, path, author, date } = post.node.frontmatter
 
         return (
-          <div class="card" key={id}>
-            <div class="container">
+          <div className="card" key={id}>
+            <div className="container">
               <h3>
                 <b>{title}</b>
               </h3>
               <hr />
               <p>{summary}</p>
               <br />
-              <div class="card-bottom">
+              <div className="card-bottom">
                 <Link className="btn btn-primary" to={path}>
                   Read More
                 </Link>
