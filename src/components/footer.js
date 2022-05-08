@@ -5,11 +5,11 @@ const Footer = ({ siteAuthor }) => {
   const { name, email, copyright } = siteAuthor
 
   return (
-    <div className="footer">
+    <footer className="footer">
       <div className="footer-name">{name}</div>
       <div className="footer-name">{email}</div>
       <p className="footer-copyright">{copyright}</p>
-    </div>
+    </footer>
   )
 }
 
